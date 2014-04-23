@@ -1,7 +1,7 @@
       SUBROUTINE trgTrackToPlane (u,E,dl,a,b,c,d,ok,spect)
       IMPLICIT NONE
 !      REAL*8    u(6),E,dl,a,b,c,d
-      REAL*8    u(9),E,dl,a,b,c,d	!	OR - 4/04
+      REAL*8    u(9),E,dl,a,b,c,d  !OR - 4/04
       INTEGER spect
       LOGICAL ok
 * --  track a single particle with given start parameters
@@ -30,13 +30,13 @@
       INTEGER i,steps,max_steps
 c
 c      write(*,*) ' E = ',E,u
-!	For Bdl
-      one=1.
-	do i=7,9
-	u(i)=0.0
-	u0(i)=0.0
-	u1(i)=0.0
-	end do
+c For Bdl
+        one=1.
+        do i=7,9
+        u(i)=0.0
+        u0(i)=0.0
+        u1(i)=0.0
+        end do
 
       IF (.NOT. OK) RETURN   
 c        write(*,*) ' u = ',u
@@ -99,16 +99,14 @@ c          write(*,*) dist0,dist1,ok
           u(i) = u0(i) + (u1(i)-u0(i)) * dist0/(dist0-dist1)
         ENDDO
 
-!	Bdl
+!Bdl
 
-	do i=7,9
+        do i=7,9
           u(i) = u0(i) + (u1(i)-u0(i)) * dist0/(dist0-dist1)
-!	u(i)=u0(i)
-	end do
-c        write(*,*) ' end u = ',u
+!u(i)=u0(i)
+         end do
 
       ENDIF
            
       RETURN
       END
-	

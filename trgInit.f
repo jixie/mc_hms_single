@@ -34,9 +34,9 @@ c      INTEGER trial1
      >                           B_phi_p,  B_sphi_p,  B_cphi_p 
  
       REAL*8       pi180
-	real*8 scale	! hard coded rescaling of B field for RSS
-	parameter (scale=0.98104)	! B_RSS = 5.0033 T - OARA 4/12/04
-c	parameter (scale=1.15)	! B_RSS = 5.0033 T - OARA 4/12/04
+      real*8 scale ! hard coded rescaling of B field for RSS
+      parameter (scale=0.98104) ! B_RSS = 5.0033 T - OARA 4/12/04
+c	parameter (scale=1.15) ! B_RSS = 5.0033 T - OARA 4/12/04
       PARAMETER (pi180 = 3.141592653d00/180.d00) 
 
       INTEGER ir,iz 
@@ -68,8 +68,8 @@ c      trial1=0
 c      IF (map.EQ.'0') THEN
       IF (map.eq.0) THEN
   
-         DO ir=1,nr			
-            rr(ir) = 2.0*float(ir-1)	
+         DO ir=1,nr
+            rr(ir) = 2.0*float(ir-1)
             zz(ir) = 2.0*float(ir-1)
             DO iz=1,nz
                B_field_r(iz,ir) = 0.
@@ -93,7 +93,7 @@ c               write(6,*)'after reading the file'
 c               write(6,*) iz,ir,B_field_z(iz,ir),B_field_r(iz,ir) 
 c               trial1=trial1+1
 c               write(6,*) trial1
-	      ! rescale field to desired value
+   ! rescale field to desired value
                B_field_z(iz,ir) = B_field_z(iz,ir) * scale
                B_field_r(iz,ir) = B_field_r(iz,ir) * scale
 c               write(6,*) B_field_z(iz,ir),B_field_r(iz,ir)
@@ -106,21 +106,21 @@ c               write(6,*) B_field_z(iz,ir),B_field_r(iz,ir)
 ! GAW 99/11/19: Must initialize rr and zz before going through loop since 
 ! do tests on them.
 
-        DO ir=1,nr			! uniform 5T field over 26 cm in z
-          rr(ir) = 2.0*float(ir-1)	! and 16 cm in r
+        DO ir=1,nr ! uniform 5T field over 26 cm in z
+          rr(ir) = 2.0*float(ir-1) ! and 16 cm in r
           zz(ir) = 2.0*float(ir-1)
         ENDDO
-        DO ir=1,nr			! uniform 5T field over 26 cm in z
+        DO ir=1,nr ! uniform 5T field over 26 cm in z
           DO iz=1,nz
             B_field_r(iz,ir) = 0.
             IF (rr(ir) .LE. 16. .and. zz(iz) .LE. 26.) THEN
 CGAW              B_field_z(iz,ir) = 0.0
               B_field_z(iz,ir) = 5.0
             ELSE
-	      B_field_z(iz,ir) = 0.0
-	    ENDIF
-	  ENDDO
-	ENDDO
+             B_field_z(iz,ir) = 0.0
+           ENDIF
+          ENDDO
+        ENDDO
       ENDIF
  
       RETURN

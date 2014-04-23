@@ -1,11 +1,11 @@
 !--------------------------------------------------------------------
-C       subroutine lowcase(str1,str2,length)
-C       Which returns in str2 a lower cased copy of str1
+C     subroutine lowcase(str1,str2,length)
+C     Which returns in str2 a lower cased copy of str1
 C       Length is the length of the 2 strings (or max chars
 C       to convert
 C
-C	pillaged (and slightly modified)
-C	from the /src directory of T. Payerle, UMD.
+C pillaged (and slightly modified)
+C from the /src directory of T. Payerle, UMD.
 
         subroutine lowcase(str1,str2)
         implicit none
@@ -17,7 +17,7 @@ C       Local vars
         data lcase /'abcdefghijklmnopqrstuvwxyz' /
         integer i,j,l
 
-	l = len(str1)
+        l = len(str1)
 
         do i=1,l
                 j = index(caps,str1(i:i) )

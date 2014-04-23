@@ -1,4 +1,4 @@
-	real*8 function gauss1(nsigmax)
+         real*8 function gauss1(nsigmax)
 
 **************************************************************************
 * This subroutine generates a random number distributed about a Gaussian
@@ -9,26 +9,26 @@
 * properties", Particle Data Group. (with nsigmax cutoff added).
 **************************************************************************
 
-	implicit none
+        implicit none
 
-	real*8 u1,u2,v1,v2,s,nsigmax
-	real*8 grnd
+        real*8 u1,u2,v1,v2,s,nsigmax
+        real*8 grnd
 
 
-1	u1 = grnd()
-	u2 = grnd()
-	v1 = 2.0*u1-1.0
-	v2 = 2.0*u2-1.0
-	s  = v1**2+v2**2
+1       u1 = grnd()
+        u2 = grnd()
+        v1 = 2.0*u1-1.0
+        v2 = 2.0*u2-1.0
+        s  = v1**2+v2**2
 
-	if (s.gt.1. .or. s.eq.0) goto 1
+        if (s.gt.1. .or. s.eq.0) goto 1
 
-	gauss1 = v1*sqrt((-2.)*log(s)/s)  ! <--want a natural log here
+        gauss1 = v1*sqrt((-2.)*log(s)/s) ! <--want a natural log here
 
 c        write(6,*) v1,s,nsigmax 
 
-	if (abs(gauss1).gt.nsigmax) goto 1	!truncate at nsigmax
+        if (abs(gauss1).gt.nsigmax) goto 1        !truncate at nsigmax
 
-	return
-	end
+        return
+        end
 

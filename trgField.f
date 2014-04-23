@@ -40,8 +40,8 @@
       INTEGER i,j,spect
       REAL*8    x(3),B(3),z,r,az,ar,a0,a1
 
-        real*8 xx(3),x_sur(2),y_sur(2),z_sur(2)        !        OR - 4/04
-        real*8 azim,az0,az_corr,horiz,az_corr2        !        OR - 7/04
+        real*8 x_sur(2),y_sur(2),z_sur(2)        !        OR - 4/04
+        real*8 azim,az0,az_corr,horiz       !        OR - 7/04
         real*8 B_scale,B_corr                        !        OR - 7/04        
         logical forwd        !        OR - 4/04 B offset forward only
         common/fwd/forwd        !        OR -4/04

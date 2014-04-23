@@ -73,7 +73,7 @@ ccc      end
       parameter(N=624)
 
       integer mti
-      integer mt(0:N-1)		!the array for the state vector
+      integer mt(0:N-1) !the array for the state vector
       common /block/mti,mt
       save   /block/
 
@@ -102,29 +102,29 @@ ccc      end
       parameter(N     =  624)
       parameter(N1    =  N+1)
       parameter(M     =  397)
-      parameter(MATA  = -1727483681)	!constant vector a
-      parameter(LMASK =  2147483647)	!least significant r bits
-      parameter(UMASK = -LMASK-1)	!most significant w-r bits
+      parameter(MATA  = -1727483681) !constant vector a
+      parameter(LMASK =  2147483647) !least significant r bits
+      parameter(UMASK = -LMASK-1) !most significant w-r bits
 * Tempering parameters
       parameter(TMASKB= -1658038656)
       parameter(TMASKC= -272236544)
 
       integer mti
-      integer mt(0:N-1)		!the array for the state vector
+      integer mt(0:N-1) !the array for the state vector
       common /block/mti,mt
       save   /block/
-      data   mti/N1/			!mti==N+1 means mt[N] is not initialized
+      data   mti/N1/ !mti==N+1 means mt[N] is not initialized
 
       integer mag01(0:1)
       data mag01/0, MATA/
-      save mag01			!mag01(x) = x * MATA for x=0,1
+      save mag01  !mag01(x) = x * MATA for x=0,1
 
       integer y
       integer kk
 
-      if(mti.ge.N) then			!generate N words at one time
-        if(mti.eq.N+1) then		!if sgrnd() has not been called,
-          call sgrnd(4357)		!a default initial seed is used
+      if(mti.ge.N) then !generate N words at one time
+        if(mti.eq.N+1) then !if sgrnd() has not been called,
+          call sgrnd(4357)  !a default initial seed is used
         endif
 
         do 1000 kk=0,N-M-1

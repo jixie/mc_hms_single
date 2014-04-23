@@ -1,14 +1,8 @@
-! addmore.cmn
-
-! ...more new variables added by myself
-         
-		real*8	beam_offset
-
-            common /addmore/beam_offset
-            
-! these are only for trgField.f just to shift the target mag. 
-! field by srast x/y offsets.
-
-               real*8 theta_lab,sry_off,srx_off,yrecs
-	
-	    common /addmore/theta_lab,sry_off,srx_off,yrecs
+c addmore.cmn
+c ...more new variables added by myself 
+        real*8 beam_offset
+        common /addmore/beam_offset
+c these are only for trgField.f just to shift the target mag. 
+c field by srast x/y offsets.
+       real*8 theta_lab,sry_off,srx_off,yrecs
+       common /addmore/theta_lab,sry_off,srx_off,yrecs

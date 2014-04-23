@@ -2,17 +2,17 @@
 
 ! ... where do we loose events?
          
-		integer*4	trials,slit_hor,slit_vert,slit_oct,
-     >				Q1_in,Q1_mid,Q1_out,
-     >				Q2_in,Q2_mid,Q2_out,
-     >				Q3_in,Q3_mid,Q3_out,
-     >				D1_in,D1_out,
-     >				shut,incut,detec,successes
-                logical         first_time_hms,firsttime,dosieve
+       integer*4 trials,slit_hor,slit_vert,slit_oct,
+     > Q1_in,Q1_mid,Q1_out,
+     > Q2_in,Q2_mid,Q2_out,
+     > Q3_in,Q3_mid,Q3_out,
+     > D1_in,D1_out,
+     > shut,incut,detec,successes
+                logical first_time_hms,firsttime,dosieve
 
 
-            common /hms_mc/trials,slit_hor,slit_vert,slit_oct,
-     &             Q1_in,Q1_mid,Q1_out,Q2_in,Q2_mid,Q2_out,
-     &             Q3_in,Q3_mid,Q3_out,D1_in,D1_out,
-     &             shut,incut,detec,successes,first_time_hms,
-     &             firsttime,dosieve
+           common /hms_mc/trials,slit_hor,slit_vert,slit_oct,
+     & Q1_in,Q1_mid,Q1_out,Q2_in,Q2_mid,Q2_out,
+     & Q3_in,Q3_mid,Q3_out,D1_in,D1_out,
+     & shut,incut,detec,successes,first_time_hms,
+     & firsttime,dosieve

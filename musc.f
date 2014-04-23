@@ -1,4 +1,4 @@
-	subroutine musc(m2,p,rad_len,dth,dph)
+        subroutine musc(m2,p,rad_len,dth,dph)
 C+_____________________________________________________________________
 !
 ! MUSC - Simulate multiple scattering of any particle.
@@ -23,40 +23,40 @@ C+_____________________________________________________________________
 ! H.J. Bulten - Aug. 1991
 C-_____________________________________________________________________
 
-	implicit none
+        implicit none
 
-	real*8 Es, epsilon
-	parameter (Es = 13.6)   !!!  In MeV  !!!
-	parameter (epsilon = 0.088)
+        real*8 Es, epsilon
+        parameter (Es = 13.6)   !!!  In MeV  !!!
+        parameter (epsilon = 0.088)
 
-	real*8 rad_len, dth, dph
-	real*8 beta, theta_sigma
-	real*8 m2, p,ptemp
+        real*8 rad_len, dth, dph
+        real*8 beta, theta_sigma
+        real*8 m2, p,ptemp
 
-	real*8 nsig_max
-	parameter(nsig_max=99.0d0)      !max #/sigma for gaussian ran #s.
+        real*8 nsig_max
+        parameter(nsig_max=99.0d0)      !max #/sigma for gaussian ran #s.
 
-	real*8 gauss1
+        real*8 gauss1
 
 ! Compute scattering angles, THETA_SCAT from a gaussian distribution,
 ! PHI_SCAT from uniform distribution.
 
-        ptemp = p*1.0e3         ! change from GeV/c to MeV/c - MEC !
+         ptemp = p*1.0e3         ! change from GeV/c to MeV/c - MEC !
 
-	beta = ptemp/sqrt(m2+ptemp*ptemp)
+        beta = ptemp/sqrt(m2+ptemp*ptemp)
 
 
-c        write(6,*) m2,ptemp,p,beta
+c      write(6,*) m2,ptemp,p,beta
 
-	theta_sigma = Es/ptemp/beta*sqrt(rad_len)*(1.+epsilon*log10
+         theta_sigma = Es/ptemp/beta*sqrt(rad_len)*(1.+epsilon*log10
      &  (rad_len))
 
 c        write(6,*) "Standard:  ",theta_sigma
 
 ! Compute new trajectory angles (units are rad)
 
-	dth = dth + theta_sigma * gauss1(nsig_max)
-	dph = dph + theta_sigma * gauss1(nsig_max)
-	return
-	end
+        dth = dth + theta_sigma * gauss1(nsig_max)
+        dph = dph + theta_sigma * gauss1(nsig_max)
+        return
+        end
 

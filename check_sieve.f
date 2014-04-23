@@ -1,18 +1,17 @@
-	logical function check_sieve(x,y)
-	implicit none
+        logical function check_sieve(x,y)
+        implicit none
 
 * Original version made on 01/30/02 by M.E. Christy
 * to more accurately model the size/shape of the HMS
 * sieve slit (with much borrowed from check_dipole.f) ...
 
-	include 'apertures.inc'
-	real*8 x,y,xlocal,ylocal
-	real*8 x_local,y_local,rad,rad1,rad2 
+        include 'apertures.inc'
+        real*8 x,y,xlocal,ylocal
+        real*8 x_local,y_local,rad,rad1,rad2 
         integer i,j
-	logical check0
-	logical tmp_check
+        logical check0
 
-	check_sieve=.false.
+        check_sieve=.false.
         check0 = .false.
         rad1 = 0.254/2.
         rad2 = 0.508/2.
@@ -20,8 +19,8 @@
 * Let us observe first the obvious symmetry of the problem
 * This helps reduce the checks to the first quadrant only...
 
-	xlocal=abs(x)
-	ylocal=abs(y)
+        xlocal=abs(x)
+        ylocal=abs(y)
 
 
 * Now compare the current position and compare it with the different 
@@ -43,8 +42,8 @@
          enddo
         endif
 
-	return
-	end
+        return
+        end
 
 
 

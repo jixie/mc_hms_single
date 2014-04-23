@@ -12,7 +12,7 @@ CCCCC   This doesn't currently include the beam on target position.             
 
       integer*8 i
       real*8 pi,mp,mp2,radcon,dens,diam,R,R1,thick,theta,trad
-      real*8 ztar,zmax,zint,xint,zdiff,tan2,li,lf(2),tf_h2,dt
+      real*8 ztar,zmax,zint,xint,zdiff,li,lf(2),tf_h2,dt
       real*8 a,b,c,ctan,ctan2
 
       pi = 3.141592654
@@ -55,7 +55,7 @@ c      write(6,*) "theta = ",theta
       tf_h2 = lf(1)
 
     
- 920   format(5f13.4)
+c 920   format(5f13.4)
 
       return
       end

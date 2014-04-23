@@ -1,4 +1,4 @@
-	subroutine rotate_haxis(rotang,xp0,yp0)
+        subroutine rotate_haxis(rotang,xp0,yp0)
 
 C+______________________________________________________________________________
 !
@@ -23,36 +23,36 @@ C+______________________________________________________________________________
 ! D. Potterveld, 15-Mar-1993.
 C-_____________________________________________________________________________
 
-	implicit none
+        implicit none
 
         include 'track.inc'
 
-	real*8 rotang,xp0,yp0,xi,radcon
-	real*8 alpha,beta,alpha_p,beta_p,sin_th,cos_th,tan_th
+        real*8 rotang,xp0,yp0,xi,radcon
+        real*8 alpha,beta,alpha_p,beta_p,sin_th,cos_th,tan_th
 
-	save
+        save
 
 C ============================= Executable Code ================================
 
 c        write(6,*) xp0,yp0
         radcon = 3.14159/180.
 
-1	tan_th = tan(rotang*radcon)
-	sin_th = sin(rotang*radcon)
-	cos_th = cos(rotang*radcon)
+        tan_th = tan(rotang*radcon)
+        sin_th = sin(rotang*radcon)
+        cos_th = cos(rotang*radcon)
 
-	alpha  = dxdzs
-	beta   = dydzs
+        alpha  = dxdzs
+        beta   = dydzs
 
-	alpha_p= (alpha + tan_th)/(1. - alpha*tan_th)
-	beta_p = beta/(cos_th - alpha*sin_th)
+        alpha_p= (alpha + tan_th)/(1. - alpha*tan_th)
+        beta_p = beta/(cos_th - alpha*sin_th)
 
         xi = xp0
-	xp0    = xi*(cos_th + alpha_p*sin_th)
-	yp0    = yp0 + xi*beta_p*sin_th
+        xp0    = xi*(cos_th + alpha_p*sin_th)
+        yp0    = yp0 + xi*beta_p*sin_th
 
-	return
-	end
+        return
+        end
 
 
 

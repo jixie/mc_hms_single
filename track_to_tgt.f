@@ -3,51 +3,47 @@
 !      subroutine track_to_tgt(delta,y,dx,dy,frx,fry,mom,mass,ctheta,
 !     >                        stheta,spect,ok,xfp,xpfp,yfp,ypfp,xtgt)	! OR 4/04
       subroutine track_to_tgt(delta,y,dx,dy,frx,fry,mom,mass1,ctheta,
-     >                   stheta,spect,ok,xfp,xpfp,yfp,ypfp,xtgt,bdl)	! OR 4/04
+     >                   stheta,spect,ok,xfp,xpfp,yfp,ypfp,xtgt,bdl) ! OR 4/04
 
       implicit none
 
-       real*8 delta,y,dx,dy      ! in: first guess reconstructed coords.
+       real*8 delta,y,dx,dy! in: first guess reconstructed coords.
                                 ! out: final reconstructed coords.
       real*8 frx                ! raster horizontal position (points right)
       real*8 fry                ! raster vertical position (points up)
       real*8 mom,one            ! momentum (MeV). (mom<0 for e-, mom>0 for p,d)
       real*8 mass1,mass             ! mass of particle (MeV)
       real*8 ctheta,stheta        ! cosine and sine of central spectrometer angle
-      real*8 delta_y,delta_z
       real*8 xfp,yfp,xpfp,ypfp
       integer spect
       logical ok
 
 !      real*8  vT(6),vTx(6)
-      real*8  vT(9),vTx(9)	!	OR - 4/04
+      real*8  vT(9),vTx(9) ! OR - 4/04
       real*8 xx,delx
       real*8 xxd
       real*8 save_delx,save_diff_delx
       integer*2 i,n
       real*8 vel,cc,eng,mom_0
       
-	real*8 xtgt	!	OR 4/04
-	real*8 bdl	!	OR - 4/04
-	real*8 vtsave(6)
-	integer ii
-		
-	logical forwd	! OR - 4/04
-	common/fwd/forwd	!	OR - 4/04
-	integer flag_az	!	OR - 7/04
-	common /azimuth/flag_az	!	OR 7-04
-	
+      real*8 xtgt ! OR 4/04
+      real*8 bdl ! OR - 4/04
+      real*8 vtsave(6)
+      integer ii
+      logical forwd ! OR - 4/04
+      common/fwd/forwd ! OR - 4/04
+      integer flag_az ! OR - 7/04
+      common /azimuth/flag_az ! OR 7-04	
       parameter (cc=29.9792458d00)
 c        write(*,*) ' in track_to_tgt'
- 	forwd = .false.	!	OR - 4/04 do the azimuthal angle correction for the backward
-	flag_az = 1		!	OR - 7/04
-	one=1.
+      forwd = .false. ! OR - 4/04 do the azimuthal angle correction for the backward
+      flag_az = 1 ! OR - 7/04
+      one=1.
 ! do reconstruction considering target field.  Taken from gen_track.f from 
 ! Markus Muehlbauer
 !
-	mass = sqrt(mass1)
-	bdl = 0.0	!	OR - 4/04
-!	bdl = -10.0	!	OR - 4/04
+        mass = sqrt(mass1)
+       bdl = 0.0 ! OR - 4/04
 
 c      write(*,*) 'to target',spect
 c      call print_coord1('after first mc_hms_recon',y,delta,dx,dy,fry,0.)
@@ -55,7 +51,7 @@ c        write(*,*) 'call to track_tom_tgt'
 c
 c initialize xtgt = x_tar - OR 4/04
 c
-	xtgt = 0.d0
+        xtgt = 0.d0
 !
 ! copy vertical offset into another variable
 
@@ -93,7 +89,7 @@ c       write(*,*) ' Before 1st call trgtracktoplane ',vt
 c      CALL trgTrackToPlane (vT,eng,1.d00,0.d00,-ctheta,stheta,-100.d00,ok,
 c     &     spect)
 
-!	write(*,*) ' Bdl - 1',vT(7),vT(8),vT(9),ok	!	OR - 4/04
+!write(*,*) ' Bdl - 1',vT(7),vT(8),vT(9),ok	!	OR - 4/04
       
 c       write(*,*) ' 1st call trgtracktoplane ',-ctheta,stheta,frx,ok,vt
 c      call print_coord3( 'first track on beam',vT)
@@ -119,12 +115,12 @@ c        call print_coord3( 'vTx, beam',vTx)
         CALL trgTrackToPlane (vT, eng,1.d00,0.d00,0.d00,1.d00,0.d00,
      &       ok,spect)
 
-!	write(*,*) ' Bdl - 2',vT(7),vT(8),vT(9),ok	!	OR - 4/04
+!write(*,*) ' Bdl - 2',vT(7),vT(8),vT(9),ok	!	OR - 4/04
 
         CALL trgTrackToPlane (vTx,eng,1.d00,0.d00,0.d00,1.d00,0.d00,
      &       ok,spect)
 
-!	write(*,*) ' Bdl - 3',vTx(7),vTx(8),vTx(9),ok	!	OR - 4/04
+!write(*,*) ' Bdl - 3',vTx(7),vTx(8),vTx(9),ok	!	OR - 4/04
 
 c        call print_coord3( 'vT,   z=0',vT)
 c        call print_coord3( 'vTx,  z=0',vTx)
@@ -136,7 +132,7 @@ c        call print_coord3( 'vTx,  z=0',vTx)
 
 c        call print_coord1('before mc_hms_recon',y,delta,dx,dy,-xxd,0.)
 
-	   call  simc_hms_recon (delta,dy,dx,y
+         call  simc_hms_recon (delta,dy,dx,y
      >                             ,xxd,xfp,xpfp,yfp,ypfp)
 c           if (spect.lt.0) mom = -mom
 c           mom_0 = mom
@@ -165,7 +161,7 @@ c        write(*,*) n,' track to tgt ',vt
         CALL trgTrackToPlane (vT,eng,1.d00,0.d00,-ctheta,stheta,-frx,
      &       ok,spect)
 
-        bdl = sqrt(vT(7)**2+vT(8)**2+vT(9)**2) !	OR - 4/04
+        bdl = sqrt(vT(7)**2+vT(8)**2+vT(9)**2) !OR - 4/04
         delx = abs(-fry-vT(1))
         save_diff_delx = save_delx - delx
         if (save_diff_delx .lt. 0 .and.   n .ne. 0) then
@@ -182,7 +178,7 @@ c        write(*,*) n,' track to tgt ',vt
            save_delx = delx
         endif
 
-!	write(*,*) ' Bdl - 4',vT(7),vT(8),vT(9),ok,bdl	!	OR - 4/04
+!write(*,*) ' Bdl - 4',vT(7),vT(8),vT(9),ok,bdl !OR - 4/04
 
 c        call print_coord3( 'after last track:',vT)
 cc        n = n+1       
@@ -198,11 +194,6 @@ cc      IF (delx .GT. .2) ok = .FALSE.
       dy = vT(5)/vT(6)
       dx = vT(4)/vT(6)
       y  = vT(2)
-	xtgt = vT(1)	! x_tar - OR 4/04   
-!x      write(*,*) 'd_xyz_tar vs bdl',vtsave(5)-vT(5),vtsave(4)-vT(4),
-!x	1	vtsave(6)-vT(6),bdl
-!x	write(*,*) 'xyz_tar vs bdl',vtsave(4),vt(4),vtsave(4)-vt(4),bdl
-c        write(*,*) 'n = ',n,ok
-c	stop
+      xtgt = vT(1) ! x_tar - OR 4/04   
       return
       end

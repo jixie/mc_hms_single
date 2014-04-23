@@ -20,7 +20,7 @@ C   vT(4,5,6) are the velocity in the X,Y,Z direction [cm/ns].
 
 
       real*8 x,y,z,dx,dy      ! in: initial coords.  out: coords of image track (in HMS cordinates)
-      real*8 mom,mom_0,one    ! momentum (MeV). (mom<0 for e-, mom>0 for p,d)
+      real*8 mom,one    ! momentum (MeV). (mom<0 for e-, mom>0 for p,d)
       real*8 mass1            ! mass squared
       real*8 mass             ! mass of particle (MeV)
       integer spect
@@ -31,8 +31,7 @@ C   vT(4,5,6) are the velocity in the X,Y,Z direction [cm/ns].
       real*8 vel              ! velocity of particle [cm/ns]
       real*8 eng              ! energy of particle
 !      real*8 vT(6)
-      real*8 vT(9)        ! OR - 4/04 (in HMS cordinates)
-        real bdl        !        OR - 4/04
+      real*8 vT(9)      ! OR - 4/04 (in HMS cordinates)
               
         logical forwd        ! OR - 4/04
         common/fwd/forwd        !        OR - 4/04

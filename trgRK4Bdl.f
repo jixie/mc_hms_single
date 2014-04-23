@@ -1,4 +1,3 @@
- 
       SUBROUTINE trgRK4Bdl(u0,u1,h,spect)
       IMPLICIT NONE
       REAL*8     u0(9),u1(9),h
@@ -19,21 +18,21 @@
 
       hh=h*0.5
       h6=h/6.
- 
+
       CALL trgDeriv(u0,dudt,spect)
       DO i=1,9
-	ut(i) = u0(i) + hh*dudt(i)
+       ut(i) = u0(i) + hh*dudt(i)
       ENDDO
 
       CALL trgDeriv(ut,dut,spect)
       DO i=1,9
-	ut(i) = u0(i) + hh*dut(i)
+       ut(i) = u0(i) + hh*dut(i)
       ENDDO
 
       CALL trgDeriv(ut,dum,spect)
       DO i=1,9
-	ut(i) = u0(i) +h*dum(i)
-        dum(i)= dut(i)  +dum(i)
+      ut(i) = u0(i) +h*dum(i)
+      dum(i)= dut(i)  +dum(i)
       ENDDO
 
       CALL trgDeriv(ut,dut,spect)
