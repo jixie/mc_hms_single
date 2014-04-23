@@ -133,7 +133,7 @@ C Function definitions.
         
         real*8          tarlength
         integer*4 last_char
-        logical*4 rd_real
+        logical*4 rd_real,rd_int
         logical         solid_tar
         logical         dummy_tar
 
@@ -200,7 +200,7 @@ C Open setup file.
 
  1968   format(a)
 
-        inp_name = 'infiles/'//read_name//inp_ext
+        inp_name = 'infiles/'//read_name(1:last_char(read_name))//inp_ext
         write(6,*)'input file = ',inp_name
         open (unit=chan,status='old',file=inp_name)
 *       open (unit=10,status='old',name='c_kin.dat')
@@ -209,11 +209,16 @@ C Open setup file.
 C Strip off header
 ! N_TRIALS:
 
-        read(chan,*) n_trials
-        write(6,*) n_trials, "        ! Number of trials"
-c        read (chan,1001) str_line
-c        if (.not.rd_int(str_line,n_trials)) 
-c     &         stop 'ERROR (ntrials) in setup!'
+C Strip off header
+         read (chan,1001) str_line
+        do while (str_line(1:1).eq.'!')
+         read (chan,1001) str_line
+        enddo
+c
+        write(*,*),str_line(1:last_char(str_line))
+        iss = rd_int(str_line,n_trials)
+        
+        if (.not.iss) stop 'ERROR (ntrials) in setup!'
 
 ! Spectrometer momentum:
 c	read (chan,*) p_spec
@@ -487,7 +492,7 @@ C Set histogram limits:
 C Initialize HBOOK/NTUPLE if used.
         if (hut_ntuple) then
          call hlimit(pawc_size)
-         ntp_name = 'worksim/'//read_name//ntp_ext
+         ntp_name = 'worksim/'//read_name(1:last_char(read_name))//ntp_ext
 c	iquest(10)=65000
 c        call hropen(30,'HUT',ntp_name,'NQ',4096,i)
           call hropen(30,'HUT',ntp_name,'N',1024,i)  !!  MEC  
@@ -501,7 +506,7 @@ C Output results.
 c write(*,*)'Give name of the output file'
 c read(*,1968)my_name
 
-         my_name = 'outfiles/'//read_name//out_ext
+         my_name = 'outfiles/'//read_name(1:last_char(read_name))//out_ext
 C------------------------------------------------------------------------------C
 C                           Top of Monte-Carlo loop                            C
 C------------------------------------------------------------------------------C
