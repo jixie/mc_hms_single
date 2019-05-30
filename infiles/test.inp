@@ -29,7 +29,7 @@
          0    topdrawer title index (=0 then no topdrawer file)
          0    topdrawer flag (=0 then no topdrawer file)
          1    ntuple create flag (=1 create HMS ntuple
-         1    ntuple dump flag (=1 then dump every event in HMS ntuple)
+         0    ntuple dump flag (=1 then dump every event in HMS ntuple)
          0    sieve flag ( =1 then have sieve
    0.00000    q1cor  
    0.00000    q2cor  

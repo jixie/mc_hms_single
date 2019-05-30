@@ -1,7 +1,15 @@
 #!/bin/csh -fb
 
+if($#argv < 1) then
+  echo "Error, you need to provide at lease one argument"
+  echo "Usage: $0:t <path_to_inputfile>"
+  echo "      the given inputfile must be stored inside ./infiles/"
+  exit
+endif
+set inp = ($1:t:r)
+
 source ~/_cshrc  #to load h2root
-./mc_hms_single << endofinput #> ./outfiles/$1.log
-$1
+src/mc_hms_single << endofinput #> ./outfiles/${inp}.log
+${inp}
 endofinput
-h2root worksim/$1.rzdat $1.root
+h2root worksim/${inp}.rzdat worksim/${inp}.root
