@@ -305,7 +305,7 @@ c	1	,gen_lim_down(i)
 ! read in flag for particle type.
 
         read(chan,*) p_flag
-        write(6,*) p_flag
+        write(6,*) p_flag, "    =   p_flag"
 cc	read (chan,1001) str_line
 cc	write(6,*) str_line(1:last_char(str_line))
 cc	if (.not.rd_int(str_line,p_flag)) stop 'ERROR: p_flag in setup file!'
@@ -317,7 +317,7 @@ cc	read (chan,1001) str_line
 cc	write(6,*) str_line(1:last_char(str_line))
 cc if (.not.rd_int(str_line,tmp_int)) stop 'ERROR: ms_flag in setup file!'
         if (tmp_int.eq.1) ms_flag = .true.
-        write(6,*) ms_flag, "    =   Do multiple scattering:"
+        write(6,*) ms_flag, "    =   Do multiple scattering"
 
 ! Read in flag for wire chamber smearing.
 
@@ -326,7 +326,7 @@ cc	read (chan,1001) str_line
 cc	write(6,*) str_line(1:last_char(str_line))
 cc	if (.not.rd_int(str_line,tmp_int)) stop 'ERROR: wcs_flag in setup file!'
         if (tmp_int.eq.1) wcs_flag = .true.
-        write(6,*)  wcs_flag, "    =   Do wirechamber smearing?  "
+        write(6,*)  wcs_flag, "    =   Do wirechamber smearing?"
 
 ! Read in flag FIT_REVERSE.
         
@@ -335,7 +335,7 @@ cc	read (chan,1001) str_line
 cc	write(6,*) str_line(1:last_char(str_line))
 cc	if (.not.rd_int(str_line,tmp_int)) stop 'ERROR:fit_reverse in setup file!'
         if (tmp_int.eq.1) fit_reverse = .true.
-        write(6,*)  fit_reverse,"    =   Fit reverse matrix elements?  "
+        write(6,*)  fit_reverse,"    =   Fit reverse matrix elements?"
 
 ! Read in flag for init/recon values.
 
@@ -349,17 +349,17 @@ cc	if (.not.rd_int(str_line,tmp_int)) stop 'ERROR:init_flag in setup file!'
         else
            ttl_indx = 0
         endif
-        write(6,*) ttl_indx
+        write(6,*) ttl_indx,"    =   ttl_indx (topdrawer title index)"
 
 
 ! Read in flag for TOPDRAWER output.
 
         read(chan,*) tmp_int
-        read (chan,1001) str_line
+cc        read (chan,1001) str_line
 cc  write(6,*) str_line(1:last_char(str_line))
 cc if (.not.rd_int(str_line,tmp_int)) stop 'ERROR:topd_flag in setup file!'
         if (tmp_int.eq.1) topd_flag = .true.
-        write(6,*) topd_flag   
+        write(6,*) topd_flag,"    =   topd_flag (topdrawer flag)"
 
 ! Read in flag for HUT NTUPLE output.
 
@@ -378,7 +378,7 @@ cc if (.not.rd_int(str_line,tmp_int)) stop 'ERROR:hut_ntuple in setup file!'
 
 
         tmp_int = 1
-cc       read(chan,*) tmp_int
+        read(chan,*) tmp_int
 cc read (chan,1001) str_line
 cc write(6,*) str_line(1:last_char(str_line))
 cc if (.not.rd_int(str_line,tmp_int)) stop
